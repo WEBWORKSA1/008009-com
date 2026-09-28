@@ -62,13 +62,13 @@ Create a Python static generator (`build/build.py`, `build/layout.py`, `build/da
 `about.html` (method and independence), `contact.html` (topic router plus a hidden-email click link), `privacy.html` (FormSubmit, Google AdSense/Analytics cookie disclosures and opt-out links, GDPR/PIPEDA/CCPA rights), `terms.html` (Exchange, contests, donations), `disclaimer.html` (**Trademark & Copyright Disclosure**), `404.html` (absolute paths), `ads.txt` template, PWA `manifest.webmanifest`, icons, OG image, and a `sw.js` offline cache.
 
 ## PHASE 7 — QA & deploy ✅
-Playwright checks: every page returns 200, no console errors, no horizontal overflow at 390px, the top bar links to web.works/contact, tools produce results, the multi-step form posts to the decoded endpoint (network mocked), and a grep confirms the email never appears. Push the sources to `main`. The GitHub Actions workflow (`.github/workflows/deploy.yml`) runs `build/images.py` and `build/build.py`, then publishes the output to the `gh-pages` branch, which GitHub Pages serves (free plan, public repo). Confirm the site is live at https://webworksa1.github.io/008009-com/.
+Playwright checks: every page returns 200, no console errors, no horizontal overflow at 390px, the top bar links to web.works/contact, tools produce results, the multi-step form posts to the decoded endpoint (network mocked), and a grep confirms the email never appears. Push the sources to `main`. Run `python3 build/jekyll.py`, which exports a Jekyll tree to `_jk/`: shared layouts, `_data/*.json`, and front-matter stubs for the number and zodiac pages. Push `_jk/` to the `gh-pages` branch, and GitHub Pages builds it with Jekyll natively (free plan, no Actions needed). Confirm the site is live at https://webworksa1.github.io/008009-com/.
 
 ---
 
 ## PHASE 8 — Owner go-live checklist (manual, ~30 minutes)
 1. **Activate forms:** submit any form once on the live site. FormSubmit sends a one-time activation email to the private inbox. Click **Activate**.
-2. **Custom domain:** point 008009.com DNS to GitHub Pages (A records 185.199.108.153, .109.153, .110.153, .111.153; CNAME `www` → `webworksa1.github.io`). Add the domain in repo Settings → Pages, tick "Enforce HTTPS", then add a `CNAME` file containing `008009.com` to `main`. CI then rebuilds with that base URL, which updates canonicals and the sitemap.
+2. **Custom domain:** point 008009.com DNS to GitHub Pages (A records 185.199.108.153, .109.153, .110.153, .111.153; CNAME `www` → `webworksa1.github.io`). Add the domain in repo Settings → Pages, tick "Enforce HTTPS", then add a `CNAME` file containing `008009.com` to the `gh-pages` branch and set `absolute_base: "https://008009.com/"` and `baseurl: ""` in its `_config.yml`, so canonicals and the sitemap use the domain.
 3. **AdSense:** apply, paste `ca-pub-…` into `config.js`, update `ads.txt`, add a Google-certified CMP for EEA/UK traffic.
 4. **Payments:** create Stripe Payment Links / Ko-fi / BMC. Paste the URLs into `config.js`.
 5. **Search Console + Bing Webmaster:** verify the site and submit `sitemap.xml`.

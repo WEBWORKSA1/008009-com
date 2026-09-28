@@ -1,0 +1,16 @@
+{
+ "name": "008009 — Lucky Numbers Hub",
+ "short_name": "008009",
+ "start_url": "./index.html",
+ "display": "standalone",
+ "background_color": "#fbf8f3",
+ "theme_color": "#B3131B",
+ "icons": [
+  {
+   "src": "assets/img/favicon.svg",
+   "sizes": "any",
+   "type": "image/svg+xml",
+   "purpose": "any"
+  }
+ ]
+}

@@ -1,0 +1,8 @@
+# 008009.com — Jekyll config for GitHub Pages
+# Custom domain: set absolute_base to "https://008009.com/", baseurl to "", and add a CNAME file.
+title: 008009.com
+absolute_base: "https://webworksa1.github.io/008009-com/"
+baseurl: "/008009-com"
+exclude: [README.md, build, project, pages-check.txt]
+include: [.well-known]
+defaults: []

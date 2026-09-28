@@ -5,4 +5,6 @@ absolute_base: "https://webworksa1.github.io/008009-com/"
 baseurl: "/008009-com"
 exclude: [README.md, build, project, pages-check.txt]
 include: [.well-known]
-defaults: []
+defaults:
+  - scope: {path: "numbers"}
+    values: {layout: "number", r: "../", active: "numbers/index.html", scripts: ["tools.js"], og_type: "article", modal: true, sticky: true, noindex: false}
